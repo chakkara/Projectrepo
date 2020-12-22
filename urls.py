@@ -1,24 +1,33 @@
-"""disease_prediction URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path,include
+from django.urls import path , re_path
+from . import views
 
 urlpatterns = [
-     path('admin/', admin.site.urls),
-     path("", include("main_app.urls")),
-     path("accounts/", include("accounts.urls")),
-     path("", include("chats.urls"))
-]
+    path("", views.home, name="home"),
+
+    path('admin_ui', views.admin_ui , name='admin_ui'),
+
+    path('patient_ui', views.patient_ui , name='patient_ui'),
+    path('checkdisease', views.checkdisease, name="checkdisease"),
+    path('pviewprofile/<str:patientusername>', views.pviewprofile , name='pviewprofile'),
+    path('pconsultation_history', views.pconsultation_history , name='pconsultation_history'),
+    path('consult_a_doctor', views.consult_a_doctor , name='consult_a_doctor'),
+    path('make_consultation/<str:doctorusername>', views.make_consultation , name='make_consultation'),
+    path('rate_review/<int:consultation_id>', views.rate_review , name='rate_review'),
+
+
+    path('dconsultation_history', views.dconsultation_history , name='dconsultation_history'),
+    path('dviewprofile/<str:doctorusername>', views.dviewprofile , name='dviewprofile'),
+    path('doctor_ui', views.doctor_ui , name='doctor_ui'),
+    
+    
+    
+    path('consultationview/<int:consultation_id>', views.consultationview , name='consultationview'),
+    path('close_consultation/<int:consultation_id>', views.close_consultation , name='close_consultation'),
+
+    
+    path('post', views.post, name='post'),
+    path('chat_messages', views.chat_messages, name='chat_messages'),
+    
+
+
+]  
